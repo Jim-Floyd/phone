@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Contacts List
+
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="offset-2 col-8">
+            {% for contact in contacts %}
+                <div class="card">
+                    <a href="{% url 'contact:details' pk=contact.id %}" class="h1">{{ contact.name }}</a>
+                </div>
+
+            {% endfor %}
+
+        </div>
+    </div>
+{% endblock %}
