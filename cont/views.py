@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.decorators.http import require_POST, require_safe
 
+from cont.constants import PhoneType
 from cont.models import Contact
 
 
@@ -17,7 +18,8 @@ def details(request):
 
 @require_safe
 def create_page(request):
-    return None
+    choices = PhoneType.process()
+    return render(request, 'create.html', {"choices": choices})
 
 
 @require_POST

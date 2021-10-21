@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+    Contacts Contact
+
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="offset-2 col-8">
+            <form action="{% url 'contact:create' %}">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Contact Name</label>
+                    <input type="text" class="form-control" id="name" name="name"
+                           placeholder="Jamshid">
+                </div>
+                <div class="mb-3">
+                    <label for="number" class="form-label">Contact Number</label>
+                    <input type="number" class="form-control" id="number" name="+998995456632"
+                           placeholder="Jamshid">
+                </div>
+                <select class="form-select" aria-label="Default select example">
+                    {% for choice in choices %}
+                        {% if forloop.counter == 1 %}
+                            <option selected value="{{ choice.name }}">{{ choice.value }}</option>
+                        {% else %}
+                            <option value="{{ choice.name }}">{{ choice.value }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </form>
+            <a href="{% url 'contact:create_page' %}" class="btn btn-success">Create Contact</a>
+
+        </div>
+    </div>
+{% endblock %}

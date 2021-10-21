@@ -11,9 +11,19 @@
             {% for contact in contacts %}
                 <div class="card">
                     <a href="{% url 'contact:details' pk=contact.id %}" class="h1">{{ contact.name }}</a>
+                    {% if contact.phone_set.all %}
+                        <ul class="list-group">
+                            {% for phone in contact.phone_set.all %}
+                                <li class="list-group-item"><strong>{{ phone.type }}</strong>{{ phone.number }}</li>
+
+                            {% endfor %}
+
+                        </ul>
+                    {% endif %}
                 </div>
 
             {% endfor %}
+            <a href="{% url 'contact:create_page' %}" class="btn btn-success">Create Contact</a>
 
         </div>
     </div>
